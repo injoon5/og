@@ -5,12 +5,7 @@ export const config = {
   runtime: 'edge',
 }
 
-const font = fetch(new URL('../../assets/Pretendard-SemiBold.woff', import.meta.url)).then(
-  (res) => res.arrayBuffer()
-)
-
 export default async function handler(req: NextRequest) {
-  const fontData = await font
   try {
     const { searchParams } = new URL(req.url)
     const hasTitle = searchParams.has('title')
@@ -57,13 +52,6 @@ export default async function handler(req: NextRequest) {
       {
         width: 1200,
         height: 630,
-        fonts: [
-          {
-            name: 'Pretendard',
-            data: fontData,
-            style: 'normal',
-          },
-        ],
       }
     )
   } catch (e: any) {
