@@ -5,7 +5,7 @@ export const config = {
   runtime: 'edge',
 }
 
-const font = fetch(new URL('../../assets/Pretendard-SemiBold.woff2', import.meta.url)).then(
+const font = fetch(new URL('../../assets/Pretendard-SemiBold.woff', import.meta.url)).then(
   (res) => res.arrayBuffer()
 )
 
