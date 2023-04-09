@@ -35,11 +35,11 @@ export default async function handler(req: NextRequest) {
             padding: "20px 150px",
             justifyContent: "center",
             fontFamily: 'Pretendard, Inter, "Fluent Emoji"',
-            fontSize: 75,
+            fontSize: 150,
             backgroundImage: "linear-gradient(9, #151b36 0%, #000000 80%)",
             letterSpacing: -3,
             lineHeight: 1.2,
-            fontWeight: 900,
+            fontWeight: 700,
             color: "white",
             wordWrap: "break-word",
             wordBreak: "keep-all",
@@ -47,7 +47,7 @@ export default async function handler(req: NextRequest) {
         >
           <div
             style={{
-              fontSize: 50,
+              fontSize: 100,
               color: "gray",
               margin: "20px 0",
             }}
@@ -58,8 +58,8 @@ export default async function handler(req: NextRequest) {
         </div>
       ),
       {
-        width: 1200,
-        height: 630,
+        width: 2400,
+        height: 1260,
         fonts: [
           {
             name: 'Pretendard',
