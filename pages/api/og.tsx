@@ -35,7 +35,7 @@ export default async function handler(req: NextRequest) {
             padding: "20px 150px",
             justifyContent: "center",
             fontFamily: 'Pretendard, Inter, "Fluent Emoji"',
-            fontSize: 150,
+            fontSize: 125,
             backgroundImage: "linear-gradient(9, #151b36 0%, #000000 80%)",
             letterSpacing: -3,
             lineHeight: 1.2,
@@ -47,7 +47,7 @@ export default async function handler(req: NextRequest) {
         >
           <div
             style={{
-              fontSize: 100,
+              fontSize: 80,
               color: "gray",
               margin: "20px 0",
             }}
