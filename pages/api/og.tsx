@@ -5,13 +5,27 @@ export const config = {
   runtime: "edge",
 };
 
-const fontSans = () =>
+const Pretendard = () =>
   fetch(new URL(`https://og.cho.sh/Pretendard-ExtraBold.woff`)).then((res) =>
     res.arrayBuffer()
   )
 
+const NotoSansSc = () =>
+  fetch(new URL(`https://fonts.gstatic.com/ea/notosanssc/v1/NotoSansSC-ExtraBold.woff`)).then((res) =>
+    res.arrayBuffer()
+  )
+
+const NotoSansTc = () =>
+  fetch(new URL(`https://fonts.gstatic.com/ea/notosanstc/v1/NotoSansTC-ExtraBold.woff`)).then((res) =>
+    res.arrayBuffer()
+  )
+
+
+
 export default async function handler(req: NextRequest) {
-  const fontSansData = await fontSans()
+  const pretendardData = await Pretendard()
+  const NotoSansScData = await NotoSansSc()
+  const NotoSansTcData = await NotoSansTc()
   try {
     const { searchParams } = new URL(req.url);
     const hasTitle = searchParams.has("title");
@@ -34,7 +48,7 @@ export default async function handler(req: NextRequest) {
             width: "100%",
             padding: "20px 150px",
             justifyContent: "center",
-            fontFamily: 'Pretendard, Inter, "Fluent Emoji"',
+            fontFamily: 'Pretendard, NotoSansSc, NotoSansTc, Inter, sans-serif',
             fontSize: 125,
             backgroundImage: "linear-gradient(9, #151b36 0%, #000000 80%)",
             letterSpacing: -3,
@@ -63,7 +77,19 @@ export default async function handler(req: NextRequest) {
         fonts: [
           {
             name: 'Pretendard',
-            data: fontSansData,
+            data: pretendardData,
+            style: 'normal',
+            weight: 700,
+          },
+          {
+            name: 'NotoSansSc',
+            data: NotoSansScData,
+            style: 'normal',
+            weight: 700,
+          },
+          {
+            name: 'NotoSansTc',
+            data: NotoSansTcData,
             style: 'normal',
             weight: 700,
           },
