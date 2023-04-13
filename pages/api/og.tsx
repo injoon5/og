@@ -6,21 +6,19 @@ export const config = {
 };
 
 const Pretendard = () =>
-  fetch(new URL(`https://og.cho.sh/Pretendard-ExtraBold.woff`)).then((res) =>
+  fetch(new URL(`https://raw.githubusercontent.com/anaclumos/font-cdn/main/Pretendard-SemiBold.woff`)).then((res) =>
     res.arrayBuffer()
   )
 
 const NotoSansSc = () =>
-  fetch(new URL(`https://fonts.gstatic.com/ea/notosanssc/v1/NotoSansSC-ExtraBold.woff`)).then((res) =>
+  fetch(new URL(`https://raw.githubusercontent.com/anaclumos/font-cdn/main/NotoSansSC-Bold.otf`)).then((res) =>
     res.arrayBuffer()
   )
 
 const NotoSansTc = () =>
-  fetch(new URL(`https://fonts.gstatic.com/ea/notosanstc/v1/NotoSansTC-ExtraBold.woff`)).then((res) =>
+  fetch(new URL(`https://raw.githubusercontent.com/anaclumos/font-cdn/main/NotoSansTC-Bold.otf`)).then((res) =>
     res.arrayBuffer()
   )
-
-
 
 export default async function handler(req: NextRequest) {
   const pretendardData = await Pretendard()
@@ -46,7 +44,7 @@ export default async function handler(req: NextRequest) {
             flexDirection: "column",
             height: "100%",
             width: "100%",
-            padding: "20px 150px",
+            padding: "60px 160px",
             justifyContent: "center",
             fontFamily: 'Pretendard, NotoSansSc, NotoSansTc, Inter, sans-serif',
             fontSize: 125,
