@@ -1,25 +1,56 @@
 import Head from "next/head";
+import { useState } from "react";
+import Image from "next/image";
 
-export default function Page() {
+export default function Home() {
+  const [title, setTitle] = useState("");
+  const [subheading, setSubheading] = useState("");
+  const [imageUrl, setImageUrl] = useState("");
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setImageUrl(
+      `/api/og/?title=${encodeURIComponent(
+        title
+      )}&subheading=${encodeURIComponent(subheading)}`
+    );
+    console.log(imageUrl);
+  };
+
   return (
     <div>
-      <Head>
-        <meta name="og:title" content="Vercel Edge Network" />
-        <meta name="og:description" content="Vercel Edge Network" />
-        <meta
-          name="og:image"
-          content={
-            // Because OG images must have a absolute URL, we use the
-            // `VERCEL_URL` environment variable to get the deployment’s URL.
-            // More info:
-            // https://vercel.com/docs/concepts/projects/environment-variables
-            `${
-              process.env.VERCEL_URL ? "https://" + process.env.VERCEL_URL : ""
-            }/api/vercel`
-          }
-        />
-      </Head>
-      <h1>A page with Open Graph Image.</h1>
+      <form onSubmit={handleSubmit}>
+        <label>
+          Subheading:
+          <input
+            type="text"
+            value={subheading}
+            onChange={(e) => setSubheading(e.target.value)}
+          />
+        </label>
+          <br />
+        <label>
+          Title:
+          <input
+            type="text"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+          />
+        </label>
+        <br />
+        <button type="submit">Generate Image</button>
+      </form>
+      {imageUrl && (
+        <div>
+          <img
+            src={imageUrl}
+            width={1200}
+            height={630}
+            alt="Generated image"
+          />
+        <code>{imageUrl}</code>
+        </div>
+      )}
     </div>
   );
 }
