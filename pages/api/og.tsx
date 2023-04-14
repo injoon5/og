@@ -45,7 +45,6 @@ export default async function handler(req: NextRequest) {
             height: "100%",
             width: "100%",
             padding: "60px 160px",
-            textWrap: "balance",
             justifyContent: "center",
             fontFamily: 'Pretendard, NotoSansSc, NotoSansTc, Inter, sans-serif',
             fontSize: 125,
