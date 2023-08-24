@@ -11,7 +11,7 @@
     "prettier": "prettier --write ."
   },
   "dependencies": {
-    "@vercel/og": "latest",
+    "@vercel/og": "^0.5.11",
     "next": "latest",
     "react": "latest",
     "react-dom": "latest"
