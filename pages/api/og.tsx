@@ -29,12 +29,12 @@ export default async function handler(req: NextRequest) {
     const hasTitle = searchParams.has("title");
     const title = hasTitle
       ? searchParams.get("title")?.slice(0, 150)
-      : "The Latest Tech News 🗞️ in Your Language 💬 in Your Inbox 📭";
+      : "Generate Images on the Fly 🪽";
 
     const hasSubheading = searchParams.get("subheading")?.slice(0, 150);
     const subheading = hasSubheading
       ? searchParams.get("subheading")
-      : "hn.cho.sh";
+      : "Hello, World!";
 
     return new ImageResponse(
       (
