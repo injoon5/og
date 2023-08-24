@@ -26,9 +26,9 @@ export default async function handler(req: NextRequest) {
   const NotoSansTcData = await NotoSansTc()
   try {
     const { searchParams } = new URL(req.url);
-    const hasTitle = searchParams.has("title");
+    const hasTitle = searchParams.has("title")?.slice(0, 150)
     const title = hasTitle
-      ? searchParams.get("title")?.slice(0, 150)
+      ? searchParams.get("title")
       : "Generate Images on the Fly 🪽";
 
     const hasSubheading = searchParams.get("subheading")?.slice(0, 150);
