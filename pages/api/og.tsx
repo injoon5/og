@@ -6,30 +6,36 @@ export const config = {
 };
 
 const Pretendard = () =>
-  fetch(new URL(`https://raw.githubusercontent.com/anaclumos/font-cdn/main/Pretendard-SemiBold.woff`)).then((res) =>
-    res.arrayBuffer()
-  )
+  fetch(
+    new URL(
+      `https://raw.githubusercontent.com/anaclumos/font-cdn/main/Pretendard-SemiBold.woff`,
+    ),
+  ).then((res) => res.arrayBuffer());
 
 const NotoSansSc = () =>
-  fetch(new URL(`https://raw.githubusercontent.com/anaclumos/font-cdn/main/NotoSansSC-Bold.otf`)).then((res) =>
-    res.arrayBuffer()
-  )
+  fetch(
+    new URL(
+      `https://raw.githubusercontent.com/anaclumos/font-cdn/main/NotoSansSC-Bold.otf`,
+    ),
+  ).then((res) => res.arrayBuffer());
 
 const NotoSansTc = () =>
-  fetch(new URL(`https://raw.githubusercontent.com/anaclumos/font-cdn/main/NotoSansTC-Bold.otf`)).then((res) =>
-    res.arrayBuffer()
-  )
+  fetch(
+    new URL(
+      `https://raw.githubusercontent.com/anaclumos/font-cdn/main/NotoSansTC-Bold.otf`,
+    ),
+  ).then((res) => res.arrayBuffer());
 
 export default async function handler(req: NextRequest) {
-  const pretendardData = await Pretendard()
-  const NotoSansScData = await NotoSansSc()
-  const NotoSansTcData = await NotoSansTc()
+  const pretendardData = await Pretendard();
+  const NotoSansScData = await NotoSansSc();
+  const NotoSansTcData = await NotoSansTc();
   try {
     const { searchParams } = new URL(req.url);
-    const hasTitle = searchParams.has("title")?.slice(0, 150)
+    const hasTitle = searchParams.get("title")?.slice(0, 150);
     const title = hasTitle
       ? searchParams.get("title")
-      : "Generate Images on the Fly 🪽";
+      : "Generate Images on the Fly :)";
 
     const hasSubheading = searchParams.get("subheading")?.slice(0, 150);
     const subheading = hasSubheading
@@ -46,7 +52,7 @@ export default async function handler(req: NextRequest) {
             width: "100%",
             padding: "60px 160px",
             justifyContent: "center",
-            fontFamily: 'Pretendard, NotoSansSc, NotoSansTc, Inter, sans-serif',
+            fontFamily: "Pretendard, NotoSansSc, NotoSansTc, Inter, sans-serif",
             fontSize: 125,
             backgroundImage: "linear-gradient(9, #151b36 0%, #000000 80%)",
             letterSpacing: -3,
@@ -74,25 +80,25 @@ export default async function handler(req: NextRequest) {
         height: 1260,
         fonts: [
           {
-            name: 'Pretendard',
+            name: "Pretendard",
             data: pretendardData,
-            style: 'normal',
+            style: "normal",
             weight: 700,
           },
           {
-            name: 'NotoSansSc',
+            name: "NotoSansSc",
             data: NotoSansScData,
-            style: 'normal',
+            style: "normal",
             weight: 700,
           },
           {
-            name: 'NotoSansTc',
+            name: "NotoSansTc",
             data: NotoSansTcData,
-            style: 'normal',
+            style: "normal",
             weight: 700,
           },
         ],
-      }
+      },
     );
   } catch (e: any) {
     console.log(`${e.message}`);
