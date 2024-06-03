@@ -20,17 +20,13 @@ const NotoSansTc = () =>
     new URL(`https://raw.githubusercontent.com/anaclumos/font-cdn/main/NotoSansTC-Bold.otf`)
   ).then((res) => res.arrayBuffer())
 
-const Tossface = () =>
-  fetch(
-    new URL(`https://raw.githubusercontent.com/anaclumos/font-cdn/main/TossFaceFontWeb.otf`)
-  ).then((res) => res.arrayBuffer())
-
 export default async function handler(req: NextRequest) {
-  const pretendardData = await Pretendard()
-  const NotoSansScData = await NotoSansSc()
-  const NotoSansTcData = await NotoSansTc()
-  const TossfaceData = await Tossface()
   try {
+    const [pretendardData, NotoSansScData, NotoSansTcData] = await Promise.all([
+      Pretendard(),
+      NotoSansSc(),
+      NotoSansTc(),
+    ])
     const { searchParams } = new URL(req.url)
     const hasTitle = searchParams.get('title')?.slice(0, 150)
     const title = hasTitle ? searchParams.get('title') : 'Generate Images on the Fly :)'
@@ -48,7 +44,6 @@ export default async function handler(req: NextRequest) {
             width: '100%',
             padding: '60px 160px',
             justifyContent: 'center',
-            fontFamily: 'Pretendard, Tossface, NotoSansSc, NotoSansTc, Inter, sans-serif',
             fontSize: 125,
             backgroundImage: 'linear-gradient(9, #151b36 0%, #000000 80%)',
             letterSpacing: -3,
@@ -74,6 +69,7 @@ export default async function handler(req: NextRequest) {
       {
         width: 2400,
         height: 1260,
+        emoji: 'fluent',
         fonts: [
           {
             name: 'Pretendard',
@@ -93,13 +89,6 @@ export default async function handler(req: NextRequest) {
             style: 'normal',
             weight: 700,
           },
-          {
-            name: 'Tossface',
-            data: TossfaceData,
-            style: 'normal',
-            weight: 700,
-
-          }
         ],
       }
     )
